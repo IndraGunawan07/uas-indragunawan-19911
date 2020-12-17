@@ -115,7 +115,6 @@ export class RegisterPage implements OnInit {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        console.log(pos);
         this.infoWindow.setPosition(pos);
         this.infoWindow.setContent('Your Current Location');
         this.infoWindow.open(this.map);

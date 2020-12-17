@@ -59,6 +59,7 @@ export class MainPage implements OnInit {
           };
         });
 
+
         data.map((d) => {
           if (res.email === d.payload.doc.data()['email']){
             this.idCurrentUser = d.payload.doc.id;
@@ -83,7 +84,7 @@ export class MainPage implements OnInit {
             this.allUser = this.allUser.filter((item) => {
               return this.listId.indexOf(item.id) !== -1;
             });
-            // console.log(this.allUser);
+            console.log(this.allUser);
             this.currentPos = {
               lat: this.currentUser[0].latitude,
               lng: this.currentUser[0].longitude
@@ -143,6 +144,9 @@ export class MainPage implements OnInit {
         this.firestore.collection('users').doc(this.currentUser[0].id).update({
           latitude: this.lat,
           longitude: this.lng,
+        });
+        this.firestore.collection('users').doc(this.currentUser[0].id).collection('history').add({
+          latlng: this.lat + ',' + this.lng,
         });
         this.presentToast();
       });

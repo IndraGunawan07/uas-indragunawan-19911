@@ -23,6 +23,11 @@
     mengenai angular. Lebih memahami penggunaan firebase. Pak Alex Wawo selaku dosen sangat semangat mengajarkan materi setiap minggu dan aslab yang sering sharing mengenai
     dunia IT.
   </p>
+  <p class="desc">My Feeds</p>
+  <div class="desc" *ngFor="let history of feeds">
+    Checked-in at {{ history.latlng }}
+    <ion-icon color="danger" name="trash-outline" (click)="deleteHistory(history.id)"></ion-icon>
+  </div>
   <input
     type="file"
     *ngIf="isDesktop"

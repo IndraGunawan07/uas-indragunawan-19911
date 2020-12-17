@@ -33,6 +33,10 @@ export class ProfilePage implements OnInit {
   currentNim: string;
   allUser = [];
 
+  docId: string;
+
+  feeds = [];
+
   constructor(
     private authService: AuthService,
     private firestore: AngularFirestore,
@@ -69,6 +73,19 @@ export class ProfilePage implements OnInit {
             this.nama = e.payload.doc.data()['nama'];
             this.imageUrl = e.payload.doc.data()['imageUrl'];
             this.nim = e.payload.doc.data()['nim'];
+          }
+        });
+
+        data.map((e) => {
+          if (res.email === e.payload.doc.data()['email']){
+            this.firestore.collection('users').doc(e.payload.doc.id).collection('history').snapshotChanges().subscribe((history) => {
+              this.feeds = history.map((f) => {
+                return {
+                  id: f.payload.doc.id,
+                  latlng: f.payload.doc.data()['latlng'],
+                };
+              });
+            });
           }
         });
       });
@@ -180,6 +197,18 @@ export class ProfilePage implements OnInit {
       });
     }
     this.counter = false;
+  }
+
+  deleteHistory(id: string){
+    this.authService.userDetails().subscribe((res) => {
+      this.firestore.collection('users').snapshotChanges().subscribe((data) => {
+        data.map((e) => {
+          if (res.email === e.payload.doc.data()['email']){
+            this.firestore.collection('users').doc(e.payload.doc.id).collection('history').doc(id).delete();
+          }
+        });
+      });
+    });
   }
 
 }
