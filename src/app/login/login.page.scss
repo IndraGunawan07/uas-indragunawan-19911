@@ -1,0 +1,32 @@
+@media (max-width: 1090px){
+    .title{
+        font-size: 15px;
+        text-align: center;
+    }
+    
+    .item{
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-bottom: 2%;
+    }
+    
+    .blank{
+        margin-top: 20%;
+    }
+}
+
+@media (min-width: 1091px){
+    .title{
+        font-size: 15px;
+        text-align: center;
+    }
+    
+    .item{
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    
+    .blank{
+        margin-top: 10%;
+    }
+}

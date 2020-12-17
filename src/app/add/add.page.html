@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/friend">Add</ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Friend</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="title">
+    <form class="form" #f="ngForm" (ngSubmit)="search(f)">
+      <ion-item class="item">
+        <ion-input type="text" class="formControl" ngModel name="nim" placeholder="Search NIM..." required></ion-input>
+      </ion-item>
+      <p class="cari"><ion-button class="button" type="submit">Search</ion-button></p>
+    </form>
+  </div>
+
+  <div class="cardContainer">
+    <ion-card *ngIf="display == true">
+      <ion-avatar class="userAvatar">
+        <ion-img [src]="searchedImageUrl"></ion-img>
+      </ion-avatar>
+  
+      <p class="info"><ion-card-title>{{ searchedName }}</ion-card-title></p>
+      <p class="info" *ngIf="ada == false" (click)="addUser(searchedId)"><ion-button>add</ion-button></p>
+    </ion-card>
+  </div>
+  <p class="info" *ngIf="self == true">You can not add yourself as a friend</p>
+  <p class="info" *ngIf="friendsExist == true">You guys are already friends</p>
+  <p class="info" *ngIf="userNoExist == true">This user does not exist</p>
+</ion-content>

@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-avatar class="userAvatar">
+    <ion-img #profilePic id="profilePic" [src]="imageUrl" (click)="presentPopup()"></ion-img>
+  </ion-avatar>
+  <p class="title" *ngIf="counter == false">{{ nama }}<ion-icon name="create-outline" (click)="counter = true"></ion-icon></p>
+  <ion-text class="title">
+    <form *ngIf="counter == true" class="form" #f="ngForm" (ngSubmit)="updateUser(f, id)">
+      <ion-item class="item">
+        <ion-input type="text" class="formControl" ngModel name="nama" placeholder="{{ nama }}" required></ion-input>
+      </ion-item>
+      <ion-button class="button simpan" type="submit">Save</ion-button>
+    </form>
+  </ion-text>
+  <p class="title">{{ nim }}</p>
+  <p class="title"><ion-button color="primary" (click)="logout()">Logout</ion-button></p>
+  <p class="desc">Kesan dan pesan selama menjalani kelas Mobile Programming 2 sangat menarik. Ilmu yang diterima seperti framework Ionic dan memperdalam pengertian
+    mengenai angular. Lebih memahami penggunaan firebase. Pak Alex Wawo selaku dosen sangat semangat mengajarkan materi setiap minggu dan aslab yang sering sharing mengenai
+    dunia IT.
+  </p>
+  <input
+    type="file"
+    *ngIf="isDesktop"
+    #filePicker
+    (change)="onFileChoose($event)"
+  />
+</ion-content>

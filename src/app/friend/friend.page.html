@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Friend List</ion-title>
+    <ion-button slot="end" class="tombolAdd" color="primary" routerLink="/add"><ion-icon name="add-outline" slot="icon-only"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar class="searchBar" placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+  <ion-list class="list">
+    <ion-item *ngFor="let data of allUser| filter:filterTerm">
+      <ion-avatar>
+        <ion-img [src]="data.imageUrl"></ion-img>
+      </ion-avatar>
+      <ion-label class="username">{{ data.nama }}</ion-label>
+      <p class="tombolDelete"><ion-button color="danger" (click)="deleteFriend(data.id)"><ion-icon name="trash-outline"></ion-icon></ion-button></p>
+    </ion-item>
+  </ion-list>
+</ion-content>
